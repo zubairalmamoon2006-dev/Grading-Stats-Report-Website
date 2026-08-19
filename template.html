@@ -56,6 +56,7 @@ body{
   background-image:
     linear-gradient(180deg, #ffffff 0%, #ffffff 180px, var(--cream) 52%, var(--pink-pale) 100%);
   min-height:100vh;
+  overflow-x:clip;
 }
 body::before{
   content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
@@ -141,7 +142,7 @@ b:hover{color:var(--pink-deep); text-shadow:0 1px 6px rgba(255,158,158,0.25);}
   box-shadow:var(--shadow);
 }
 
-.main{flex:1; min-width:0; padding:40px 48px 90px; max-width:1180px; margin:0 auto;}
+.main{flex:1; min-width:0; padding:40px 48px 90px; max-width:1180px; margin:0 auto; overflow-x:hidden;}
 
 /* ---------- HERO ---------- */
 .hero{
@@ -198,6 +199,9 @@ section.block{
   background:var(--paper); border:3px solid var(--ink); border-radius:var(--radius);
   box-shadow:var(--shadow); overflow:hidden; margin-bottom:18px;
 }
+.card-body{padding:26px;}
+.note-box, .formula-box{overflow-x:auto; -webkit-overflow-scrolling:touch;}
+.formula-box{box-sizing:border-box;}
 .card-header{
   padding:18px 26px; border-bottom:3px solid var(--ink);
   display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:space-between;
@@ -223,7 +227,7 @@ section.block{
 @media (max-width:900px){.two-col{grid-template-columns:1fr;}}
 .note-box{
   background:var(--cream-deep); border:2.5px dashed var(--ink); border-radius:16px;
-  padding:16px 18px; font-size:14px;
+  padding:16px 18px; font-size:14px; overflow-wrap:anywhere;
 }
 .note-box h4{font-size:14.5px; margin-bottom:8px;}
 .note-box ul{margin:0; padding-left:18px;}
@@ -239,6 +243,7 @@ section.block{
   background:var(--cream-deep); border:2px solid var(--ink); border-radius:16px;
   padding:22px 24px; font-family:'Times New Roman','Georgia',serif; font-size:17px;
   overflow-x:auto; text-align:center; line-height:1.8; letter-spacing:.3px;
+  max-width:100%; box-sizing:border-box;
 }
 .frac{
   display:inline-flex; flex-direction:column; align-items:center;
@@ -362,6 +367,8 @@ footer{
   .hero{padding:34px 22px;}
   .card-body{padding:18px;}
   .course-grid{grid-template-columns:repeat(2,1fr);}
+  .formula-box{font-size:13px; padding:14px 12px;}
+  .note-box{font-size:13px;}
 }
 @media print{
   .sidebar,.menutoggle{display:none;}
@@ -881,7 +888,8 @@ section.block.parallax-far{
               </div>
             </div>
             <div class="note-box">
-              <h4>The CPI Booster Score (CBS) <span class="credit-tag">Credits: Rudra G</span></h4>
+              <h4>The CPI Booster Score (CBS)<br><span class="credit-tag" style="float:right;">Credits: Rudra G</span></h4>
+              <div style="clear:both;"></div>
               <p>CBS is a score defined to assess which courses are most effective for improving CPI. A higher CBS indicates that a course is better suited for enhancing CPI. For full variable definitions and methodology, refer to the DAV team's documentation.</p>
             </div>
           </div>
